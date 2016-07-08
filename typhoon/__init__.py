@@ -19,20 +19,20 @@ import optparse
 
 import locale
 from locale import gettext as _
-locale.textdomain('typhoon')
+locale.textdomain('cumulus')
 
 from gi.repository import Gtk # pylint: disable=E0611
 
-from typhoon import TyphoonWindow
+from cumulus import cumulusWindow
 
-from typhoon_lib import set_up_logging, get_version
+from cumulus_lib import set_up_logging, get_version
 
 def parse_options():
     """Support for command line options"""
     parser = optparse.OptionParser(version="%%prog %s" % get_version())
     parser.add_option(
         "-v", "--verbose", action="count", dest="verbose",
-        help=_("Show debug messages (-vv debugs typhoon_lib also)"))
+        help=_("Show debug messages (-vv debugs cumulus_lib also)"))
     (options, args) = parser.parse_args()
 
     set_up_logging(options)
@@ -42,6 +42,6 @@ def main():
     parse_options()
 
     # Run the application.    
-    window = TyphoonWindow.TyphoonWindow()
+    window = cumulusWindow.cumulusWindow()
     window.show()
     Gtk.main()

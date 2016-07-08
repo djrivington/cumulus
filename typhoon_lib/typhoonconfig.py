@@ -25,7 +25,7 @@ __all__ = [
 
 # Where your project will look for your data (for instance, images and ui
 # files). By default, this is ../data, relative your trunk layout
-__typhoon_data_directory__ = '../data/'
+__cumulus_data_directory__ = '../data/'
 __license__ = 'GPL-3'
 __version__ = 'VERSION'
 
@@ -33,7 +33,7 @@ import os
 
 import gettext
 from gettext import gettext as _
-gettext.textdomain('typhoon')
+gettext.textdomain('cumulus')
 
 class project_path_not_found(Exception):
     """Raised when we can't find the project directory."""
@@ -50,16 +50,16 @@ def get_data_file(*path_segments):
 
 
 def get_data_path():
-    """Retrieve typhoon data path
+    """Retrieve cumulus data path
 
-    This path is by default <typhoon_lib_path>/../data/ in trunk
-    and /usr/share/typhoon in an installed version but this path
+    This path is by default <cumulus_lib_path>/../data/ in trunk
+    and /usr/share/cumulus in an installed version but this path
     is specified at installation time.
     """
 
     # Get pathname absolute or relative.
     path = os.path.join(
-        os.path.dirname(__file__), __typhoon_data_directory__)
+        os.path.dirname(__file__), __cumulus_data_directory__)
 
     abs_data_path = os.path.abspath(path)
     if not os.path.exists(abs_data_path):

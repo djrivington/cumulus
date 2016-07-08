@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schemalist gettext-domain="typhoon">
-  <schema id="net.launchpad.typhoon" path="/net/launchpad/typhoon/">
+<schemalist gettext-domain="cumulus">
+  <schema id="net.launchpad.cumulus" path="/net/launchpad/cumulus/">
     <key name="example" type="s">
       <default>''</default>
       <summary>Sample setting</summary>

@@ -19,11 +19,11 @@
 
 from gi.repository import Gio, Gtk # pylint: disable=E0611
 import logging
-logger = logging.getLogger('typhoon_lib')
+logger = logging.getLogger('cumulus_lib')
 
 from . helpers import get_builder, show_uri, get_help_uri
 
-# This class is meant to be subclassed by TyphoonWindow.  It provides
+# This class is meant to be subclassed by cumulusWindow.  It provides
 # common functions and some boilerplate.
 class Window(Gtk.Window):
     __gtype_name__ = "Window"
@@ -42,10 +42,10 @@ class Window(Gtk.Window):
         """Special static method that's automatically called by Python when 
         constructing a new instance of this class.
         
-        Returns a fully instantiated BaseTyphoonWindow object.
+        Returns a fully instantiated BasecumulusWindow object.
         """
-        builder = get_builder('TyphoonWindow')
-        new_object = builder.get_object("typhoon_window")
+        builder = get_builder('cumulusWindow')
+        new_object = builder.get_object("cumulus_window")
         new_object.finish_initializing(builder)
         return new_object
 
@@ -53,8 +53,8 @@ class Window(Gtk.Window):
         """Called while initializing this instance in __new__
 
         finish_initializing should be called after parsing the UI definition
-        and creating a TyphoonWindow object with it in order to finish
-        initializing the start of the new TyphoonWindow instance.
+        and creating a cumulusWindow object with it in order to finish
+        initializing the start of the new cumulusWindow instance.
         """
         # Get a reference to the builder and set up the signals.
         self.builder = builder
@@ -63,7 +63,7 @@ class Window(Gtk.Window):
         self.preferences_dialog = None # instance
         self.AboutDialog = None # class
 
-        self.settings = Gio.Settings("net.launchpad.typhoon")
+        self.settings = Gio.Settings("net.launchpad.cumulus")
         self.settings.connect('changed', self.on_preferences_changed)
 
         # Optional application indicator support
@@ -72,7 +72,7 @@ class Window(Gtk.Window):
         #  http://owaislone.org/quickly-add-indicator/
         #  https://wiki.ubuntu.com/DesktopExperienceTeam/ApplicationIndicators
         try:
-            from typhoon import indicator
+            from cumulus import indicator
             # self is passed so methods of this class can be called from indicator.py
             # Comment this next line out to disable appindicator
             self.indicator = indicator.new_application_indicator(self)
@@ -83,14 +83,14 @@ class Window(Gtk.Window):
         show_uri(self, "ghelp:%s" % get_help_uri())
 
     def on_mnu_about_activate(self, widget, data=None):
-        """Display the about box for typhoon."""
+        """Display the about box for cumulus."""
         if self.AboutDialog is not None:
             about = self.AboutDialog() # pylint: disable=E1102
             response = about.run()
             about.destroy()
 
     def on_mnu_preferences_activate(self, widget, data=None):
-        """Display the preferences window for typhoon."""
+        """Display the preferences window for cumulus."""
 
         """ From the PyGTK Reference manual
            Say for example the preferences dialog is currently open,
@@ -108,11 +108,11 @@ class Window(Gtk.Window):
         # destroy command moved into dialog to allow for a help button
 
     def on_mnu_close_activate(self, widget, data=None):
-        """Signal handler for closing the TyphoonWindow."""
+        """Signal handler for closing the cumulusWindow."""
         self.destroy()
 
     def on_destroy(self, widget, data=None):
-        """Called when the TyphoonWindow is closed."""
+        """Called when the cumulusWindow is closed."""
         # Clean up code for saving application state should be added here.
         Gtk.main_quit()
 

@@ -1,7 +1,7 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: typhoon
+Upstream-Name: cumulus
 Upstream-Contact: Archisman Panigrahi <apandada1@gmail.com>
-Source: https://launchpad.net/typhoon
+Source: https://launchpad.net/cumulus
 
 Files: *
 Copyright: (C) 2014 Archisman Panigrahi <apandada1@gmail.com>

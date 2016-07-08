@@ -17,31 +17,31 @@
 
 import locale
 from locale import gettext as _
-locale.textdomain('typhoon')
+locale.textdomain('cumulus')
 
 import subprocess
 from gi.repository import Gtk, WebKit # pylint: disable=E0611
 import logging
-logger = logging.getLogger('typhoon')
+logger = logging.getLogger('cumulus')
 
-from typhoon_lib import Window
-from typhoon_lib.helpers import get_media_file
+from cumulus_lib import Window
+from cumulus_lib.helpers import get_media_file
 
 try:
     from gi.repository import Unity
 except ImportError:
     pass
 
-# See typhoon_lib.Window.py for more details about how this class works
-class TyphoonWindow(Window):
-    __gtype_name__ = "TyphoonWindow"
+# See cumulus_lib.Window.py for more details about how this class works
+class cumulusWindow(Window):
+    __gtype_name__ = "cumulusWindow"
     
     def finish_initializing(self, builder): # pylint: disable=E1002
         """Set up the main window"""
-        super(TyphoonWindow, self).finish_initializing(builder)
+        super(cumulusWindow, self).finish_initializing(builder)
 
         self.box = self.builder.get_object("box")
-        self.window = self.builder.get_object("typhoon_window")
+        self.window = self.builder.get_object("cumulus_window")
         self.drag = True
 
         # Code for other initialization actions should be added here.
@@ -56,7 +56,7 @@ class TyphoonWindow(Window):
         self.box.show_all()
 
         try:
-            launcher = Unity.LauncherEntry.get_for_desktop_id("typhoon.desktop")
+            launcher = Unity.LauncherEntry.get_for_desktop_id("cumulus.desktop")
             launcher.set_property("count_visible", False)
         except NameError:
             pass

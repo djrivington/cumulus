@@ -1,5 +1,5 @@
-project = typhoon
+project = cumulus
 version = 12.08.1
 template = ubuntu-application
-ppa = typhoon
-lp_id = typhoon
+ppa = cumulus
+lp_id = cumulus

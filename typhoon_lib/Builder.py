@@ -24,7 +24,7 @@ from gi.repository import GObject, Gtk # pylint: disable=E0611
 import inspect
 import functools
 import logging
-logger = logging.getLogger('typhoon_lib')
+logger = logging.getLogger('cumulus_lib')
 
 from xml.etree.cElementTree import ElementTree
 

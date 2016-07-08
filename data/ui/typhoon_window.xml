@@ -1,8 +1,8 @@
-<glade-catalog name="typhoon_window" domain="glade-3" 
+<glade-catalog name="cumulus_window" domain="glade-3" 
                depends="gtk+" version="1.0">
   <glade-widget-classes>
-    <glade-widget-class title="Typhoon Window" name="TyphoonWindow" 
-                        generic-name="TyphoonWindow" parent="GtkWindow"
+    <glade-widget-class title="cumulus Window" name="cumulusWindow" 
+                        generic-name="cumulusWindow" parent="GtkWindow"
                         icon-name="widget-gtk-window"/>
   </glade-widget-classes>
 </glade-catalog>
