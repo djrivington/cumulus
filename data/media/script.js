@@ -39,11 +39,11 @@ $(document).ready(function() {
 
 	//APP START.
 	init_settings();
-	if (!localStorage.typhoon) {
+	if (!localStorage.cumulus) {
 		show_settings("location");
 	} else {
 		//Has been run before
-		render(localStorage.typhoon);
+		render(localStorage.cumulus);
 		setInterval(function() {
 			console.log("Updating Data...");
 			$(".border .sync").click();
@@ -52,7 +52,7 @@ $(document).ready(function() {
 });
 
 function getWeatherData(woeid, callback) {
-	//Get json using woeid got from yql
+	//Get json using woeid got using yql
 	$.ajax({
 		type : "GET",
 		dataType : "json",
@@ -140,7 +140,7 @@ function init_settings() {
 		} else if ($(this).hasClass("settings")) {
 			show_settings("all");
 		} else if ($(this).hasClass("sync")) {
-			render(localStorage.typhoon);
+			render(localStorage.cumulus);
 		}
 	});
 
@@ -172,8 +172,8 @@ function init_settings() {
 	//This can only be run if there is a tick.
 	$("#locationModal .loader").click(function() {
 		if ($(this).hasClass("tick")) {
-			localStorage.typhoon = $("#locationModal .loader").attr("data-code")
-			render(localStorage.typhoon)
+			localStorage.cumulus = $("#locationModal .loader").attr("data-code")
+			render(localStorage.cumulus)
 			show_settings("noweather")
 			setInterval(function() {
 				console.log("Updating Data...")
@@ -183,24 +183,24 @@ function init_settings() {
 	})
 
 	// Sets up localstorage
-	localStorage.typhoon_measurement = localStorage.typhoon_measurement || "c";
-	localStorage.typhoon_speed = localStorage.typhoon_speed || "kph";
-	localStorage.typhoon_color =  localStorage.typhoon_color || "gradient";
-	localStorage.typhoon_launcher = localStorage.typhoon_launcher || "checked";
+	localStorage.cumulus_measurement = localStorage.cumulus_measurement || "c";
+	localStorage.cumulus_speed = localStorage.cumulus_speed || "kph";
+	localStorage.cumulus_color =  localStorage.cumulus_color || "gradient";
+	localStorage.cumulus_launcher = localStorage.cumulus_launcher || "checked";
 
-	$('#locationModal .measurement [data-type=' + localStorage.typhoon_measurement + ']').addClass('selected');
-	$('#locationModal .speed [data-type=' + localStorage.typhoon_speed + ']').addClass('selected');
+	$('#locationModal .measurement [data-type=' + localStorage.cumulus_measurement + ']').addClass('selected');
+	$('#locationModal .speed [data-type=' + localStorage.cumulus_speed + ']').addClass('selected');
 
 	//Sets up the Toggle Switches
 	$('#locationModal .toggleswitch span').click(function() {
 		$(this).parent().children().removeClass('selected');
-		localStorage.setItem("typhoon_" + $(this).parent().attr("class").replace("toggleswitch ", ""), $(this).addClass('selected').attr("data-type"));
+		localStorage.setItem("cumulus_" + $(this).parent().attr("class").replace("toggleswitch ", ""), $(this).addClass('selected').attr("data-type"));
 		$(".border .settings").hide();
 	});
 
 	//Color thing
 	$('.color span').click(function() {
-		localStorage.typhoon_color = $(this).attr("data-color");
+		localStorage.cumulus_color = $(this).attr("data-color");
 		background(null);
 	});
     $('.color span[data-color=gradient]').click(function() {
@@ -208,13 +208,13 @@ function init_settings() {
     });
 	
 
-	if (localStorage.typhoon_launcher == "checked") {
+	if (localStorage.cumulus_launcher == "checked") {
 		$('#locationModal .launcher input').attr("checked", "checked");
 		document.title = "enable_launcher";
 	}
 	$('#locationModal .launcher input').click(function() {
-		localStorage.typhoon_launcher = $('#locationModal .launcher input').attr("checked");
-		if (localStorage.typhoon_launcher == "checked") {
+		localStorage.cumulus_launcher = $('#locationModal .launcher input').attr("checked");
+		if (localStorage.cumulus_launcher == "checked") {
 			document.title = "enable_launcher";
 		} else {
 			document.title = "disable_launcher";
@@ -226,7 +226,7 @@ function init_settings() {
 
 	/* Error Message Retry Button */
 	$('#errorMessage .btn').click(function() {
-		render(localStorage.typhoon);
+		render(localStorage.cumulus);
 	});
 
 }
@@ -265,10 +265,10 @@ function render(location) {
 
 			//Sets initial temp as Fahrenheit
 			var temp = weather.temperature;
-			if (localStorage.typhoon_measurement == "c") {
+			if (localStorage.cumulus_measurement == "c") {
 				temp = Math.round((weather.temperature -32)*5/9);
 				$("#temperature").text(temp + " °C");
-			} else if (localStorage.typhoon_measurement == "k") {
+			} else if (localStorage.cumulus_measurement == "k") {
 				temp = Math.round((weather.temperature -32)*5/9) + 273;
 				$("#temperature").text(temp + " °K");
 			} else {
@@ -277,12 +277,12 @@ function render(location) {
 			document.title = temp;
 
 			var windSpeed = weather.windSpeed;
-			if (localStorage.typhoon_speed != "mph") {
+			if (localStorage.cumulus_speed != "mph") {
 				//Converts to either kph or m/s
-				windSpeed = (localStorage.typhoon_speed == "kph") ? Math.round(windSpeed * 1.609344) : Math.round(windSpeed * 4.4704) /10;
+				windSpeed = (localStorage.cumulus_speed == "kph") ? Math.round(windSpeed * 1.609344) : Math.round(windSpeed * 4.4704) /10;
 			}
 			$("#windSpeed").text(windSpeed);
-			$("#windUnit").text((localStorage.typhoon_speed == "ms") ? "m/s" : localStorage.typhoon_speed);
+			$("#windUnit").text((localStorage.cumulus_speed == "ms") ? "m/s" : localStorage.cumulus_speed);
 			$("#humidity").text(weather.humidity + " %");
 
 			//Background Color
@@ -292,9 +292,9 @@ function render(location) {
 			for (var i=0; i<5; i++) {
 				$('#' + i + ' .day').text(weather.week[i].day);
 				$('#' + i + ' .code').text(weather_code(weather.week[i].code));
-				if (localStorage.typhoon_measurement == "c") {
+				if (localStorage.cumulus_measurement == "c") {
 					$('#' + i + ' .temp').html(Math.round((weather.week[i].high -32)*5/9) + "°<span>" + Math.round((weather.week[i].low -32)*5/9) + "°</span>");
-				} else if (localStorage.typhoon_measurement == "k") {
+				} else if (localStorage.cumulus_measurement == "k") {
 					$('#' + i + ' .temp').html(Math.round((weather.week[i].high -32)*5/9) + 273 + "<span>" + Math.round((weather.week[i].low -32)*5/9 + 273)  + "</span>");
 				} else {
 					$('#' + i + ' .temp').html(weather.week[i].high + "°<span>" + weather.week[i].low + "°</span>");
@@ -435,10 +435,10 @@ function background(temp) {
 	};
 
 	//Sets Background Color
-	if (localStorage.typhoon_color == "gradient") {
+	if (localStorage.cumulus_color == "gradient") {
 		var percentage = Math.round((temp - 45) *  2.2);
 		$("#container").css("background", blend(percentage));
 	} else {
-		$("#container").css("background", "#" + localStorage.typhoon_color);
+		$("#container").css("background", "#" + localStorage.cumulus_color);
 	}
 }
