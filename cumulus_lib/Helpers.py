@@ -21,7 +21,7 @@
 import logging
 import os
 
-from . cumulusconfig import get_data_file
+from . CumulusConfig import get_data_file
 from . Builder import Builder
 
 from locale import gettext as _

@@ -25,7 +25,7 @@ import logging
 logger = logging.getLogger('cumulus')
 
 from cumulus_lib import Window
-from cumulus_lib.helpers import get_media_file
+from cumulus_lib.Helpers import get_media_file
 
 try:
     from gi.repository import Unity
@@ -33,12 +33,12 @@ except ImportError:
     pass
 
 # See cumulus_lib.Window.py for more details about how this class works
-class cumulusWindow(Window):
-    __gtype_name__ = "cumulusWindow"
+class CumulusWindow(Window):
+    __gtype_name__ = "CumulusWindow"
     
     def finish_initializing(self, builder): # pylint: disable=E1002
         """Set up the main window"""
-        super(cumulusWindow, self).finish_initializing(builder)
+        super(CumulusWindow, self).finish_initializing(builder)
 
         self.box = self.builder.get_object("box")
         self.window = self.builder.get_object("cumulus_window")

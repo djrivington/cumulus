@@ -20,7 +20,7 @@
 '''facade - makes cumulus_lib package easy to refactor
 
 while keeping its api constant'''
-from . helpers import set_up_logging
+from . Helpers import set_up_logging
 from . Window import Window
-from . cumulusconfig import get_version
+from . CumulusConfig import get_version
 
