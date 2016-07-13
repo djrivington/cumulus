@@ -42,6 +42,6 @@ def main():
     parse_options()
 
     # Run the application.    
-    window = CumulusWindow.cumulus_window()
+    window = CumulusWindow.CumulusWindow()
     window.show()
     Gtk.main()
