@@ -30,7 +30,7 @@ assert DistUtilsExtra.auto.__version__ >= '2.18', 'needs DistUtilsExtra.auto >= 
 
 def update_config(libdir, values = {}):
 
-    filename = os.path.join(libdir, 'cumulus_lib/cumulusconfig.py')
+    filename = os.path.join(libdir, 'cumulus_lib/CumulusConfig.py')
     oldvalues = {}
     try:
         fin = file(filename, 'r')
@@ -59,8 +59,7 @@ def move_desktop_file(root, target_data, prefix):
     # normal data files anywhere we want, the desktop file needs to exist in
     # the main system to be found.  Only actually useful for /opt installs.
 
-    old_desktop_path = os.path.normpath(root + target_data +
-                                        '/share/applications')
+    old_desktop_path = os.path.normpath(root + target_data + '/share/applications')
     old_desktop_file = old_desktop_path + '/cumulus.desktop'
     desktop_path = os.path.normpath(root + prefix + '/share/applications')
     desktop_file = desktop_path + '/cumulus.desktop'
@@ -82,7 +81,6 @@ def move_desktop_file(root, target_data, prefix):
     return desktop_file
 
 def update_desktop_file(filename, target_pkgdata, target_scripts):
-
     try:
         fin = file(filename, 'r')
         fout = file(filename + '.new', 'w')
@@ -139,8 +137,8 @@ DistUtilsExtra.auto.setup(
     name='cumulus',
     version='0.8.94',
     license='GPL-3',
-    author='Archisman Panigrahi',
-    author_email='apandada1@gmail.com',
+    author='Daryl Bennett',
+    author_email='kd8bny@gmail.com',
     description='Quickly check the weather with this beautiful application',
     long_description='cumulus is a free and open source weather application. It is continuation of discontinued Stormcloud 1.1 ,however with some changes. It is and always will be free.                                                                                                                                                  PPA: https://launchpad.net/~apandada1/+archive/cumulus/                                                                                                              Homepage: http://getcumulus.tk/',
     url='https://launchpad.net/cumulus',

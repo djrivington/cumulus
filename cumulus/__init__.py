@@ -23,7 +23,7 @@ locale.textdomain('cumulus')
 
 from gi.repository import Gtk # pylint: disable=E0611
 
-from cumulus import cumulusWindow
+from cumulus import CumulusWindow
 
 from cumulus_lib import set_up_logging, get_version
 
@@ -42,6 +42,6 @@ def main():
     parse_options()
 
     # Run the application.    
-    window = cumulusWindow.cumulusWindow()
+    window = CumulusWindow.cumulus_window()
     window.show()
     Gtk.main()
