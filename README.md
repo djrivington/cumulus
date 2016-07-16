@@ -9,8 +9,6 @@ Based on [Stormcloud](http://getstormcloud.com/) by [Jono Cooper](https://twitte
 
 Thanks to [Adam Whitcroft](https://twitter.com/AdamWhitcroft) for [Climacons](http://adamwhitcroft.com/climacons/).
 
-[![Bitdeli badge](https://d2weczhvl823v0.cloudfront.net/apandada1/cumulus/trend.png)](https://bitdeli.com/free)
-
 # TODO
 - Fix broken code
 - Python 3
