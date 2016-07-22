@@ -4,7 +4,7 @@ Resurrected!
 
 Simple weather application, powered by [Yahoo! Weather](http://weather.yahoo.com)
 
-Forked from [cumulus](https://github.com/apandada1/cumulus) which was
+Forked from [typhoon](https://github.com/apandada1/typhon) which was
 Based on [Stormcloud](http://getstormcloud.com/) by [Jono Cooper](https://twitter.com/consindo).
 
 # Major Thanks

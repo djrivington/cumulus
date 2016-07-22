@@ -12,7 +12,7 @@
     src: local('Ubuntu Condensed'), local('UbuntuCondensed-Regular'), url('fonts/ubuntu.woff') format('woff');
 }
 body {
-    color: #FFFFFF;
+    color: #fff;
     margin: 0;
     padding: 0;
     font-family:"Ubuntu Condensed";
@@ -333,7 +333,6 @@ p, span, div {
 #locationModal .loader.tick:hover {
     background: #333;
 }
-
 #locationModal a {
     text-decoration: none;
     color: #ffffff;
@@ -428,4 +427,32 @@ input[type="range"]::-webkit-slider-thumb:active {
 }
 .credits li {
     color: #fff;
+}
+
+.apiSelector {
+	width: 100%;
+	float: right;
+}
+
+#apiSelect {
+	width: 100%;
+    border: 2px solid #222;
+    background: #333;
+    color: white;
+    -webkit-transition: 150ms ease background;
+    font-family:"Ubuntu Condensed";
+    font-size: 17px;
+    padding: 3px 10px;
+    letter-spacing: -1px;
+    cursor: pointer;
+    -webkit-user-drag: none;
+    outline: none;
+}
+
+.apiSelector table{
+	width: 100%;
+	vertical-align: middle;
+}
+.apiSelector table td {
+	vertical-align: middle;
 }
