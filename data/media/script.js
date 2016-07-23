@@ -41,7 +41,7 @@ function setApiOptions() {
     var htmlString = "";    
     for (i = 0; i < 2; i++) {
         htmlString += "<option value=\"" + weatherApi[i].value;
-        if ( localStorage.api == weatherApi[i].value ) {
+        if ( localStorage.api && localStorage.api == weatherApi[i].value ) {
             htmlString += "\" selected='selected'";
         } 
         htmlString += "\">" + weatherApi[i].text + "</option>"

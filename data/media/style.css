@@ -431,7 +431,6 @@ input[type="range"]::-webkit-slider-thumb:active {
 
 .apiSelector {
 	width: 100%;
-	float: right;
 }
 
 #apiSelect {

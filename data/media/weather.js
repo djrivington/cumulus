@@ -90,8 +90,7 @@ function generateStats(data, callback) {
         generateYahooStats(data, function(weather) {
             callback(weather);
         });
-    }
-    
+    }    
 }
 
 //Converts Yahoo weather to icon font
