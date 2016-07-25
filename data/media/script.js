@@ -31,7 +31,6 @@ function setNewApiData() {
     getCity(localStorage.cumulus_location, function(cityCode) {
         if ( cityCode ) {
             localStorage.cumulus = cityCode;
-            render(cityCode);
         }
     });
 }
@@ -52,7 +51,10 @@ function setApiOptions() {
 
 function init_settings() {
 	//Prevents Dragging on certain elements
-	$('.border .settings, .border .sync, .border .close, .border .minimize, #locationModal input, #locationModal .measurement span, #locationModal .speed span, #locationModal .loader, #locationModal a, #locationModal .color, #locationModal .btn, #errorMessage .btn, #city span, #locationModal img').mouseover(function() {
+	var dragExceptions = '.border .settings, .border .sync, .border .close, .border .minimize, #locationModal input, ' + 
+	'#locationModal .measurement span, #locationModal .speed span, #locationModal .loader, #locationModal a, #locationModal .color, ' +
+	'#locationModal .btn, #errorMessage .btn, #city span, #locationModal img, #apiSelect, #notFinishedPlaceholder';
+	$(dragExceptions).mouseover(function() {
 		document.title = "disabledrag";
 	}).mouseout(function() {
 		document.title = "enabledrag";
@@ -365,4 +367,12 @@ function background(temp) {
 	} else {
 		$("#container").css("background", "#" + localStorage.cumulus_color);
 	}
+}
+
+function showNotFinished() {
+	$("#notFinishedPlaceholder").parent().css("display", "block");
+}
+
+function hideNotFinished() {
+	$("#notFinishedPlaceholder").parent().css("display", "none");
 }

@@ -65,7 +65,7 @@
 		Derived from <a href="https://github.com/apandada1/typhoon">Typhoon</a><br>
 		Icons (<a href="http://adamwhitcroft.com/climacons/">Climacons</a>) by <a href="https://twitter.com/AdamWhitcroft">Adam Whitcroft</a>.<br>
 		Powered by <a href="http://weather.yahoo.com">Yahoo! Weather</a>.<br>
-		Currently developed and maintained by:</p>		
+		Active developers and maintainers:</p>		
 		<ul>
 		      <li><a href="https://github.com/kd8bny">Daryl Bennett</a></li>
 		      <li><a href="https://plus.google.com/102096389476199660882">Adrian Verban</a></li>
@@ -123,8 +123,8 @@
 		<br>&nbsp;&nbsp;&nbsp;
 		<div style="width:100%; text-align:center;">
 		<a class="btn" tag="credits">CREDITS</a>
-		<a class="btn" href="javascript:void(0);">HOW TO</a>
-		<a class="btn" href="javascript:void(0);">SUPPORT</a>
+		<a class="btn" href="javascript:showNotFinished();">HOW TO</a>
+		<a class="btn" href="javascript:showNotFinished();">SUPPORT</a>
 		</div><br><br>
 	</div>
 </div>
@@ -132,6 +132,13 @@
 	Could not connect to internet.<br>
 	Check your internet connection.<br>
 	<button class="btn">TRY AGAIN</button>
+</div>
+<div class="modalContainer">
+	<div id="notFinishedPlaceholder">
+		Functionality not yet implemented.<br>
+		Thank you for understanding!<br>
+		<input type="button" class="btn" value="Close" onclick="hideNotFinished();">
+	</div>
 </div>
 </body>
 </html>
