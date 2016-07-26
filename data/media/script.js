@@ -1,34 +1,3 @@
-function getCity(inputLocation, callback) {
-	var woeid = null;
-	//Get woeid using location from settings input
-	$.ajax({
-		type : "GET",
-		dataType : "json",
-		url : "https://query.yahooapis.com/v1/public/yql?q=select woeid from geo.places(1) where text='" + inputLocation + "'&format=json",
-		success : function(data) {
-			woeid = data.query.results.place.woeid;
-			$.ajax({
-				type : "GET",
-				dataType : "json",
-				url : "https://query.yahooapis.com/v1/public/yql?q=select location from weather.forecast where woeid=" + woeid + "&format=json",
-				success : function(data) {
-					localStorage.cumulus_location = data.query.results.channel.location.city;
-					callback(woeid);
-				},
-				error: function(data) {
-					if (data.status === 0) {
-						showError('network');
-					}
-				}
-			})
-		},
-		error: function(data) {
-			if (data.status === 0) {
-				showError('network');
-			}
-		}
-	});
-}
 $(document).ready(function() {
 	//Filters Proprietary RSS Tags
 	jQuery.fn.filterNode = function(name){
@@ -36,6 +5,8 @@ $(document).ready(function() {
 			return this.nodeName === name;
 		});
 	};
+	
+	setApiOptions();
 
 	//APP START.
 	init_settings();
@@ -47,88 +18,43 @@ $(document).ready(function() {
 		setInterval(function() {
 			console.log("Updating Data...");
 			$(".border .sync").click();
-		}, 600000);
+		}, 900000);
 	}
+	
+	$("#apiSelect").on("change", function(){
+	    localStorage.api = $("#apiSelect").val();
+	    setNewApiData();
+	});
 });
 
-function getWeatherData(woeid, callback) {
-	//Get json using woeid got using yql
-	$.ajax({
-		type : "GET",
-		dataType : "json",
-		url: "https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid=" + woeid + "&format=json",
-		success: function(data) {
-			$('#errorMessage').fadeOut(350);
-			callback(data);
-		},
-		error: function(data) {
-			if (data.status === 0) {
-				showError('network');
-			}
-		}
-	});
+function setNewApiData() {
+    getCity(localStorage.cumulus_location, function(cityCode) {
+        if ( cityCode ) {
+            localStorage.cumulus = cityCode;
+        }
+    });
 }
 
-function generateStats(data, callback) {
-	//Weather Object
-	weather = {};
-	
-	var channel = data.query.results.channel;
-	var location = data.query.results.channel.location;
-	var units = data.query.results.channel.units;
-	var item = data.query.results.channel.item;
-	var wind = data.query.results.channel.wind;
-	var atmosphere = data.query.results.channel.atmosphere;
-
-	//Location
-	weather.city = location.city;
-	weather.country = location.country;
-
-	//Link
-	weather.link = channel.link;
-
-	//Temperature
-	weather.temperature = item.condition.temp;
-	weather.temperatureUnit = units.temperature;
-
-	//Wind
-	weather.windUnit = units.speed;
-	weather.windSpeed = wind.speed;
-	weather.windDirection = wind.direction;
-
-	//Humidity
-	weather.humidity = atmosphere.humidity;
-
-	//Weekly Weather
-	weekArr = item.forecast;
-	weather.week = [];
-	for (var i=0; i<5; i++) {
-		weather.week[i] = {};
-		weather.week[i].day = $(weekArr[i]).attr("day");
-		weather.week[i].code = $(weekArr[i]).attr("code");
-		weather.week[i].low = $(weekArr[i]).attr("low");
-		weather.week[i].high = $(weekArr[i]).attr("high");
-	}
-
-	//Current Weather		var city = getCity(locationInput.val());		
-
-	weather.code = item.condition.code;
-	if (weather.code == "3200") {
-		weather.code = weather.week[0].code;
-	}
-
-	if (callback) {
-		callback(weather);
-	}
+function setApiOptions() {
+    var weatherApi = [ { value: "y", text: "Yahoo! Weather" }, { value: "owm", text: "Open Weather Map" } ];
+    var htmlString = "";    
+    for (i = 0; i < 2; i++) {
+        htmlString += "<option value=\"" + weatherApi[i].value;
+        if ( localStorage.api && localStorage.api == weatherApi[i].value ) {
+            htmlString += "\" selected='selected'";
+        } 
+        htmlString += "\">" + weatherApi[i].text + "</option>"
+    }
+    
+    $("#apiSelect").html(htmlString);
 }
-
-//Converts Yahoo weather to icon font
-function weather_code(a){var b={0:"(",1:"z",2:"(",3:"z",4:"z",5:"e",6:"e",7:"o",8:"3",9:"3",10:"9",11:"9",12:"9",13:"o",14:"o",15:"o",16:"o",17:"e",18:"e",19:"s",20:"s",21:"s",22:"s",23:"l",24:"l",25:"`",26:"`",27:"2",28:"1",29:"2",30:"1",31:"/",32:"v",33:"/",34:"v",35:"e",36:"v",37:"z",38:"z",39:"z",40:"3",41:"o",42:"o",43:"o",44:"`",45:"z",46:"o",47:"z",3200:"`"};return b[a];}
 
 function init_settings() {
-
 	//Prevents Dragging on certain elements
-	$('.border .settings, .border .sync, .border .close, .border .minimize, #locationModal input, #locationModal .measurement span, #locationModal .speed span, #locationModal .loader, #locationModal a, #locationModal .color, #locationModal .btn, #errorMessage .btn, #city span, #locationModal img').mouseover(function() {
+	var dragExceptions = '.border .settings, .border .sync, .border .close, .border .minimize, #locationModal input, ' + 
+	'#locationModal .measurement span, #locationModal .speed span, #locationModal .loader, #locationModal a, #locationModal .color, ' +
+	'#locationModal .btn, #errorMessage .btn, #city span, #locationModal img, #apiSelect, #notFinishedPlaceholder';
+	$(dragExceptions).mouseover(function() {
 		document.title = "disabledrag";
 	}).mouseout(function() {
 		document.title = "enabledrag";
@@ -172,13 +98,13 @@ function init_settings() {
 	//This can only be run if there is a tick.
 	$("#locationModal .loader").click(function() {
 		if ($(this).hasClass("tick")) {
-			localStorage.cumulus = $("#locationModal .loader").attr("data-code")
-			render(localStorage.cumulus)
-			show_settings("noweather")
+			localStorage.cumulus = $("#locationModal .loader").attr("data-code");
+			render(localStorage.cumulus);
+			show_settings("noweather");
 			setInterval(function() {
 				console.log("Updating Data...")
 				$(".border .sync").click()
-			}, 600000)
+			}, 900000)
 		}
 	})
 
@@ -441,4 +367,12 @@ function background(temp) {
 	} else {
 		$("#container").css("background", "#" + localStorage.cumulus_color);
 	}
+}
+
+function showNotFinished() {
+	$("#notFinishedPlaceholder").parent().css("display", "block");
+}
+
+function hideNotFinished() {
+	$("#notFinishedPlaceholder").parent().css("display", "none");
 }

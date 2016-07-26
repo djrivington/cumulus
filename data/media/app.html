@@ -1,11 +1,12 @@
-<!DOCTYPE html>
+<html>
 <head>
 <meta charset="utf-8">
 <link href="style.css" rel="stylesheet">
 <script src="jquery.min.js"></script>
-<script src="script.js"></script>
+<script src="weather.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
 </head>
-<body onload="opacity()">
+<body onload="opacity();">
 <div id="container">
 	<div class="border">
 		<div class="close">&#10005;</div>
@@ -55,24 +56,31 @@
 <div id="locationModal">
 	<div class="credits">
 		<img src="back.svg">
-		<h1 style="text-align: center">cumulus 0.8.94</h1>
+		<h3 style="text-align: center">Cumulus v1.0.0</h3>
 		<br>
-		<p>cumulus is a simple weather application for Ubuntu. It is and always will be free.<br> 
-		<a href="https://github.com/apandada1/cumulus/">Source code</a> is released under <a href="http://www.gnu.org/licenses/gpl.html">GPL-3</a>.</p>
-		<li>Derived from <a href="http://getstormcloud.com/">Stormcloud</a> <a href="https://github.com/consindo/stormcloud/tree/e7ef8e131466d477075e92337e502c3cac004ee2">1.1</a> by<br> <a href="https://twitter.com/consindo">Jono Cooper</a>.</li>
-		<li>Currently developed and maintained by <a href="https://twitter.com/apandada1">Archisman Panigrahi</a>.</li>
-		<li>Icons (<a href="http://adamwhitcroft.com/climacons/">Climacons</a>) by <a href="https://twitter.com/AdamWhitcroft">Adam Whitcroft</a>.</li>
-		<li>Powered by <a href="http://weather.yahoo.com">Yahoo! Weather</a>.</li><br>
-		<h3>Contributors:</h3>
-		<li><a href="https://twitter.com/zdr0id">Zlatan Vasović</a></li>
-		<li>Esteban <a href="https://sites.google.com/site/cumulusweatherapp/help-and-how-to-1/howtomakecumulusavailableineveryworkspace">(Found the way to make the app visible in every workspace)</a></li>
-		<br>
+		<p>Cumulus is a simple weather application for Ubuntu. <br>
+		It is and always will be free.<br> 
+		<a href="https://github.com/kd8bny/cumulus">Source code</a> is released under 
+		<a href="http://www.gnu.org/licenses/gpl.html">GPL-3</a>.<br>
+		Derived from <a href="https://github.com/apandada1/typhoon">Typhoon</a><br>
+		Icons (<a href="http://adamwhitcroft.com/climacons/">Climacons</a>) by <a href="https://twitter.com/AdamWhitcroft">Adam Whitcroft</a>.<br>
+		Powered by <a href="http://weather.yahoo.com">Yahoo! Weather</a>.<br>
+		Active developers and maintainers:</p>		
+		<ul>
+		      <li><a href="https://github.com/kd8bny">Daryl Bennett</a></li>
+		      <li><a href="https://plus.google.com/102096389476199660882">Adrian Verban</a></li>
+		</ul>		
+		<p>Contributors:</p>
+		<ul>
+		  <li><a href="https://github.com/apandada1/typhoon">Archisman Panigrahi</a></li>
+		  <li><a href="https://twitter.com/zdr0id">Zlatan Vasović</a></li>
+		  <li><a href="https://sites.google.com/site/typhoonweatherapp/help-and-how-to-1/howtomaketyphoonavailableineveryworkspace">Esteban</a></li>
+		</ul>
 		<h3 style="text-align: center">Thanks for using.</h3><br><br>
 	</div>
 	<div class="input">
 	<input type="text" placeholder="Location"><span class="loader"></span><br>
-	e.g London England, Tokyo<br>
-	<h3><a href="https://sites.google.com/site/cumulusweatherapp/support-1">SUPPORT</a></h3></span>
+	e.g London England, Tokyo	
 	</div>
 	<div class="full">
 		<div class="toggleswitch measurement">
@@ -98,12 +106,26 @@
 		<div class="launcher">
 			<input type="checkbox" id="launcherswitch"><label for="launcherswitch">Show Launcher Count</label>
 		</div>
-			<br>
-			Opacity <br><br>
-			<input id="slider" type="range" min ="0.1" max="1.0" step ="0.05" onchange="updateTitle(this.value);"/>
-		
-		<br><br>&nbsp;&nbsp;&nbsp;<a class="btn" tag="credits">CREDITS</a>&nbsp;&nbsp;<a class="btn" href="https://sites.google.com/site/cumulusweatherapp/help-and-how-to-1">HOW TO</a>&nbsp;&nbsp;<a class="btn" href="http://upclock.tk">UP CLOCK</a>
-	<br><br><br><br>
+		<br>
+		<div class="apiSelector">
+		 	<table>
+		 		<tr>
+		 			<td style="width: 30%;">Source</td>
+		 			<td style="width: 100%;">
+		 				<select id="apiSelect"></select>
+		 			</td>
+		 		</tr>
+		 	</table>	
+		</div>
+		<br>
+		Opacity<br>
+		<input id="slider" type="range" min ="0.1" max="1.0" step ="0.05" onchange="updateTitle(this.value);"/>		
+		<br>&nbsp;&nbsp;&nbsp;
+		<div style="width:100%; text-align:center;">
+		<a class="btn" tag="credits">CREDITS</a>
+		<a class="btn" href="javascript:showNotFinished();">HOW TO</a>
+		<a class="btn" href="javascript:showNotFinished();">SUPPORT</a>
+		</div><br><br>
 	</div>
 </div>
 <div id="errorMessage">
@@ -111,5 +133,13 @@
 	Check your internet connection.<br>
 	<button class="btn">TRY AGAIN</button>
 </div>
+<div class="modalContainer">
+	<div id="notFinishedPlaceholder">
+		Functionality not yet implemented.<br>
+		Thank you for understanding!<br>
+		<input type="button" class="btn" value="Close" onclick="hideNotFinished();">
+	</div>
+</div>
 </body>
 </html>
+Contact GitHub 
