@@ -191,7 +191,7 @@ function render(location) {
 			$("#code").text(weather_code(weather.code)).attr("class", "w" + weather.code);
 
 			//Sets initial temp as Fahrenheit
-			var temp = weather.temperature;
+			var temp = Math.round(weather.temperature);
 			if (localStorage.cumulus_measurement == "c") {
 				temp = Math.round((weather.temperature -32)*5/9);
 				$("#temperature").text(temp + " °C");
@@ -224,7 +224,7 @@ function render(location) {
 				} else if (localStorage.cumulus_measurement == "k") {
 					$('#' + i + ' .temp').html(Math.round((weather.week[i].high -32)*5/9) + 273 + "<span>" + Math.round((weather.week[i].low -32)*5/9 + 273)  + "</span>");
 				} else {
-					$('#' + i + ' .temp').html(weather.week[i].high + "°<span>" + weather.week[i].low + "°</span>");
+					$('#' + i + ' .temp').html(Math.round(weather.week[i].high) + "°<span>" + Math.round(weather.week[i].low) + "°</span>");
 				}
 			}
 
