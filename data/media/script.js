@@ -24,6 +24,7 @@ $(document).ready(function() {
 	$("#apiSelect").on("change", function(){
 	    localStorage.api = $("#apiSelect").val();
 	    setNewApiData();
+		$(".border .settings").hide();
 	});
 });
 

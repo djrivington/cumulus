@@ -5,7 +5,7 @@ Resurrected!
 Simple weather application, powered by [Yahoo! Weather](http://weather.yahoo.com)
 
 Forked from [typhoon](https://github.com/apandada1/typhoon) which was
-Based on [Stormcloud](http://getstormcloud.com/) by [Jono Cooper](https://twitter.com/consindo).
+Based on [Stormcloud](https://github.com/consindo/stormcloud/) by [Jono Cooper](https://twitter.com/consindo).
 
 # Major Thanks
 - [Adrian Verban](https://github.com/vadrian89)
@@ -14,3 +14,4 @@ Based on [Stormcloud](http://getstormcloud.com/) by [Jono Cooper](https://twitte
 
 # TODO
 - Python 3
+- Custom Color

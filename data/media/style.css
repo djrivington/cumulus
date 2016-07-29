@@ -389,7 +389,7 @@ input[type=range] {
     background-color: rgba(255, 255, 255, 0.3);
     -webkit-border-radius: 15px;
     border-radius: 15px;
-    cursor: default;
+    cursor: pointer;
     outline: none;
 }
 input[type="range"]::-webkit-slider-thumb {
@@ -436,7 +436,7 @@ input[type="range"]::-webkit-slider-thumb:active {
 #apiSelect {
 	width: 100%;
     border: 2px solid #222;
-    color: #333333;
+    color: #fff;
     -webkit-transition: 150ms ease background;
     font-family:"Ubuntu Condensed";
     font-size: 17px;
