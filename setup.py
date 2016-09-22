@@ -138,13 +138,13 @@ class InstallAndUpdateDataDirectory(DistUtilsExtra.auto.install_auto):
 
 DistUtilsExtra.auto.setup(
     name='cumulus',
-    version='1.0-0',
+    version='1.0.5',
     license='GPL-3',
     author='Daryl Bennett',
     author_email='kd8bny@gmail.com',
     description='Quickly check the weather with this beautiful application',
-    long_description='cumulus is a free and open source weather application. It is continuation of discontinued Stormcloud 1.1 ,however with some changes. It is and always will be free.                                                                                                                                                  PPA: https://launchpad.net/~apandada1/+archive/cumulus/                                                                                                              Homepage: http://getcumulus.tk/',
-    url='https://launchpad.net/cumulus',
+    long_description='Cumulus is a free and open source weather application. It is continuation of discontinued Stormcloud 1.1 ,however with some changes. It is and always will be free.',
+    url='https://github.com/kd8bny/cumulus',
     cmdclass={'install': InstallAndUpdateDataDirectory}
     )
 
