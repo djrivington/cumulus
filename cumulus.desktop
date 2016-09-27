@@ -1,0 +1,8 @@
+[Desktop Entry]
+_Name=Cumulus
+_Comment=Weather application
+Categories=GNOME;Internet;
+Exec=cumulus
+Icon=cumulus
+Terminal=false
+Type=Application

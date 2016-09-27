@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    var updateInteval = 3600000;
+    var updateTimer;
     //Filters Proprietary RSS Tags
     jQuery.fn.filterNode = function(name){
         return this.filter(function(){
@@ -15,16 +17,15 @@ $(document).ready(function() {
     } else {
         //Has been run before
         getWeather(null);
-        setInterval(function() {
-            console.log("Updating Data...");
-            getWeather(null);
-        }, 3600000);     
+        updateTimer = setInterval(getPeriodicWeather, updateInteval);
     }
     init_settings();
     
     //Update weather data based on location stored
     $("#decoratorBar .sync").on("click", function() {
         getWeather(null);
+        clearInterval(updateTimer);
+        updateTimer = setInterval(getPeriodicWeather, updateInteval);
     }); 
     
     //Sets temperature measurement
@@ -74,20 +75,16 @@ $(document).ready(function() {
         }); 
     }
     
-  //This can only be run if there is a tick.
-    $("#locationModal .loader").on("click", function() {
-        if ( $(this).hasClass("tick") ) {
+    //This can only be run if there is a tick.
+    $("#locationModal .loader").on("click", function() {        
+        if ($(this).hasClass("tick")) {
             getWeather(null);            
             $("#locationModal .input :input").val("");
             $(this).removeClass("tick");
             $(this).removeAttr("data-code");
-            $(this).html("");
-            show_settings("noweather");
-            setInterval(function() {                
-                console.log("Updating Data...");
-                $("#decoratorBar .sync").click();
-            }, 3600000)
-            
+            $(this).html("");       
+            clearInterval(updateTimer);
+            updateTimer = setInterval(getPeriodicWeather, updateInteval);
         }
     });
     
@@ -107,6 +104,8 @@ $(document).ready(function() {
             savelocationFromInput(searchLocation, function(cityCode) {
                 $("#decoratorBar .sync").show();
                 setApiSelected();
+                clearInterval(updateTimer);
+                updateTimer = setInterval(getPeriodicWeather, updateInteval);
             });
         }            
     });
@@ -121,7 +120,7 @@ $(document).ready(function() {
 
 function getWeather(inputLocation, callback) {
     $('#decoratorBar .sync').addClass('busy');
-    $("#decoratorBar .settings, #decoratorBar .sync").show();
+    $("#decoratorBar .settings, #decoratorBar .sync").show();    
     if ( inputLocation != null ) {
         //Saves location name and id in localStorage for future updates
         savelocationFromInput(inputLocation, function(cityCode) {
@@ -129,7 +128,8 @@ function getWeather(inputLocation, callback) {
         });
     }
     else {
-        getWeatherData(function() {
+        getWeatherData(function() {            
+            console.log("Updating Data...");
             //Updates the weather in UI with data from localStorage 
             setWeather();       
             //Sets opacity
@@ -221,7 +221,7 @@ function setWeather() {
         $('#decoratorBar .sync').removeClass('busy');
         $('#actualWeather').fadeIn(500);
         $("#locationModal").fadeOut(500);
-        }, 500); 
+        }, 500);
  }
 
 function init_storage() {
@@ -427,4 +427,7 @@ $(document).ajaxError(function() {
 	showError();
 });
 
+function getPeriodicWeather() {
+    getWeather(null)
+}
 

@@ -6,7 +6,7 @@ function saveOpenWeatherStats(data, callback) {
     localStorage.cumulus_country = data.sys.country;
     localStorage.cumulus_link = "http://openweathermap.org/city/" + data.id;
     localStorage.weather_temp = getTemperature(data.main.temp, "k");
-    localStorage.weather_wind_speed = getSpeed(data.wind.speed, "mph");
+    localStorage.weather_wind_speed = getSpeed(data.wind.speed, "ms");
     localStorage.weather_humidity = data.main.humidity;    
     localStorage.weather_desc = data.weather[0].description;
     openWeatherForecast(data, function() {

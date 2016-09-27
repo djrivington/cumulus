@@ -1,0 +1,20 @@
+name: cumulus
+version: "1.0.6"
+summary: Simple weather application, powered by Yahoo! Weather & Open Weather Map
+description: Forked from typhoon which was based on Stormcloud by Jono Cooper.
+confinement: devmode
+
+apps:
+  cumulus:
+    command: ./bin/cumulus
+
+parts:
+  cumulus:
+    plugin: python2
+    source: .
+    stage-packages: 
+      - python-all
+      - python-gi
+      - gir1.2-webkit-3.0
+      - gir1.2-glib-2.0
+      - gir1.2-gtk-3.0
