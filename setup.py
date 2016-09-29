@@ -45,6 +45,6 @@ setup(
         ('share/cumulus/media', glob.glob('data/media/*.json')),
         ('share/cumulus/media', glob.glob('data/media/*.css')),
         ('bin', ['bin/cumulus']),
-        ('../share/applications', ['cumulus.desktop'])
+        ('share/applications', ['cumulus.desktop'])
         ]
 )

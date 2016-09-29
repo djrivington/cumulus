@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="cumulus">
-  <schema id="com.github.cumulus" path="/apps/cumulus/" gettext-domain="cumulus">
+  <schema id="net.launchpad.cumulus" path="/net/launchpad/cumulus/">
     <key name="example" type="s">
       <default>''</default>
       <summary>Sample setting</summary>
