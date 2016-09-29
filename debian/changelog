@@ -1,4 +1,41 @@
-cumulus (1.0-0) stable; urgency=low
+cumulus (1.0-6ubuntu1) xenial; urgency=low
+
+  * New
+  - added API selector 
+  - api cannot be changed if a new location was searched
+  - temperature / speed is calculated when weather is downloaded based on user selection and downloaded temperature / speed units
+  - added function for temperature unit
+  - added ubuntu condensed font for international languages support 
+  - added weather description
+  - added link in credits page for Open Weather Map provider
+  - added weather description in system language
+  - cumulus.desktop file
+  - snapcraft.yaml file
+  
+  * Changed
+  - ui is now flexible, the ui items aren't absolute positioned anymore(this can help for future widget resizing option)
+  - changed ubuntu condensed font with the newer version everywhere it was used 
+  - changed behavior of sync button, the weather should be shown after the sync has finished completely 
+  - increased weather update from 15 mins to 60 mins (because weather doesn't usually changes so drastically in so little time span), weather update on demand still works
+  - fixed issue where default settings were not set on first run
+  - settings and sync button arer hidden on first run
+  - changed a bit font size and margins of detail divs to fit 
+  - moved javascript code in different source files and named accordingly to be more readable
+  - changed schema to match cumulus project
+  - changed setup.py completely with a standard script
+  - fixed issue where the script for open weather map calculated the weather speed wrong 
+  - changed the way weather updates inteval because the interval was never resetting, just creating more update intervals in case operations such as (changed location / api / measurements), now it should properly update the weather on an hour basis since last update
+  - hidden How To and Support buttons until we add something to them
+
+  * Known Issues
+  - gradient background not setting correctly based on weather
+  - location might bug out when toggling through API and / or changing weather temperature / speed units(looking into it)
+  - weather still fades in before weather is updated when loader button has been clicked, on new location, sometimes
+  - weather loader button(with tick) sometimes remains visible after location has been changed
+
+ -- Verban Adrian <verbanady@gmail.com>  Tue, 27 Sep 2016 22:02:13 +0300
+
+cumulus (1.0-6ubuntu1) xenial; urgency=low
 
   * New release.
 
