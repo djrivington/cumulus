@@ -1,8 +1,8 @@
 [Desktop Entry]
 _Name=Cumulus
-_Comment=Weather application
-Categories=GNOME;Internet;
+_Comment=Cumulus application
+Categories=GNOME;Utility;
 Exec=cumulus
-Icon=cumulus
+Icon=/usr/share/cumulus/media/cumulus.svg
 Terminal=false
 Type=Application

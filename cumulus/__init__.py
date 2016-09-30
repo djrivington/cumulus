@@ -1,6 +1,10 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
 ### BEGIN LICENSE
-# Copyright (C) 2014 Archisman Panigrahi <apandada1@gmail.com>
+# Copyright (C) 2016 Daryl Bennett <kd8bny@gmail.com>
+# Maintainer Archisman Panigrahi
+# Based on Stormcloud by Jono Cooper <jonocooper.com>
+# Thanks to all the contributors.
+# Using the Ubuntu Condensed font.
 # Thanks to Adam Whitcroft <adamwhitcroft.com> for Climacons!
 # This program is free software: you can redistribute it and/or modify it 
 # under the terms of the GNU General Public License version 3, as published 
@@ -17,9 +21,9 @@
 
 import optparse
 
-import locale
-from locale import gettext as _
-locale.textdomain('cumulus')
+import gettext
+from gettext import gettext as _
+gettext.textdomain('cumulus')
 
 from gi.repository import Gtk # pylint: disable=E0611
 

@@ -1,6 +1,10 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
 ### BEGIN LICENSE
-# Copyright (C) 2014 Archisman Panigrahi <apandada1@gmail.com>
+# Copyright (C) 2016 Daryl Bennett <kd8bny@gmail.com>
+# Maintainer Archisman Panigrahi
+# Based on Stormcloud by Jono Cooper <jonocooper.com>
+# Thanks to all the contributors.
+# Using the Ubuntu Condensed font.
 # Thanks to Adam Whitcroft <adamwhitcroft.com> for Climacons!
 # This program is free software: you can redistribute it and/or modify it 
 # under the terms of the GNU General Public License version 3, as published 
@@ -25,7 +29,7 @@ import logging
 logger = logging.getLogger('cumulus')
 
 from cumulus_lib import Window
-from cumulus_lib.Helpers import get_media_file
+from cumulus_lib.helpers import get_media_file
 
 try:
     from gi.repository import Unity
@@ -40,7 +44,6 @@ class CumulusWindow(Window):
         """Set up the main window"""
         super(CumulusWindow, self).finish_initializing(builder)
         defaultLocale = str(locale.getdefaultlocale())
-
         self.box = self.builder.get_object("box")
         self.window = self.builder.get_object("cumulus_window")
         self.drag = True

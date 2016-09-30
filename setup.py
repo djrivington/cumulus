@@ -92,7 +92,7 @@ class InstallAndUpdateDataDirectory(DistUtilsExtra.auto.install_auto):
 
 DistUtilsExtra.auto.setup(
     name='cumulus',
-    version= '1.0.7',    
+    version='1.0.73',
     author='Daryl Bennett',  
     author_email='kd8bny@gmail.com',
     license='GPL-3',
