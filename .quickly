@@ -1,5 +1,5 @@
 project = cumulus
-version = 12.08.1
+version = 12.04
 template = ubuntu-application
-ppa = cumulus
-lp_id = cumulus
+lp_id = cumulus-weather-app
+ppa = cumulus-team/cumulus
