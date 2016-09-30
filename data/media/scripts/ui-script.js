@@ -270,8 +270,9 @@ function opacity() {
 }
 
 function updateTitle(val) {
-	document.title = "o" + val;
-	localStorage.app_opacity = val;
+	rounded_val = Math.round(val*100)/100;
+	document.title = "o" + rounded_val;
+	localStorage.app_opacity = rounded_val;
 }
 
 function showNotFinished() {
