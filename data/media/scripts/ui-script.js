@@ -276,12 +276,13 @@ function setApiSelected() {
 function opacity() {
     $('input[type=range]').val(localStorage.app_opacity);
     document.title = "o" + localStorage.app_opacity;
-    document.title = "enable_drag";
+    document.title = "enabledrag";
 }
 
 function updateTitle(val) {
-	document.title = "o" + val;
-	localStorage.app_opacity = val;
+	rounded_val = Math.round(val*100)/100;
+	document.title = "o" + rounded_val;
+	localStorage.app_opacity = rounded_val;
 }
 
 function showNotFinished() {
@@ -412,18 +413,6 @@ function background(temp) {
     }
 }
 
-function getTemperatureSymbol(unit) {
-    if (unit == "c") {
-        return " °C";
-    } 
-    else if (unit == "k") {
-        return " °K";
-    } 
-    else {
-        return " °F";
-    }
-}
-
 function getSpeedUnitSymbol(unit) { 
     if (unit == "ms" || unit == "m/s" ) {
         return " m/s";
@@ -433,6 +422,18 @@ function getSpeedUnitSymbol(unit) {
     } 
     else {
         return " mph";
+    }
+}
+
+function getTemperatureSymbol(unit) {
+    if (unit == "c") {
+        return " °C";
+    } 
+    else if (unit == "k") {
+        return " °K";
+    } 
+    else {
+        return " °F";
     }
 }
 
@@ -452,4 +453,3 @@ $(document).ajaxError(function() {
 function getPeriodicWeather() {
     getWeather(null)
 }
-
