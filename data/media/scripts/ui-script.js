@@ -195,16 +195,26 @@ function setWeather() {
     weather.temperature = localStorage.weather_temp || "NaN";
     weather.windSpeed = localStorage.weather_wind_speed || "NaN";
     weather.humidity = localStorage.weather_humidity;
-//    weather.windDirection = localStorage.cumulus_direction || "NaN";  // not used yet
+    
+    if(localStorage.weather_desc.length > 15) {
+        $("#weatherDesc").css("display", "none");
+        $("#longWeatherDesc").css("display", "block");
+        $(".week").css("margin-top", "15px");
+    }
+    else {
+        $("#weatherDesc").css("display", "block");
+        $("#longWeatherDesc").css("display", "none");
+        $(".week").css("margin-top", "30px");
+    }
     
     document.title = weather.temperature;
     $('#city span').html("<a href='" + localStorage.cumulus_link + "'>" + localStorage.cumulus_location + "</a>");
     $("#code").text(weather_code(weather.code)).attr("class", "w" + weather.code);
     $("#temperature").html(weather.temperature + getTemperatureSymbol(localStorage.cumulus_measurement.toLowerCase()));
-    $("#windSpeed").html(weather.windSpeed);
-    $("#windUnit").html((localStorage.cumulus_speed == "ms") ? "m/s" : localStorage.cumulus_speed);
+    $("#windSpeed").html(weather.windSpeed + " " + getSpeedUnitSymbol(localStorage.cumulus_speed.toLowerCase()));
     $("#humidity").html(weather.humidity + " %");
     $("#weatherDesc").html("<span style='text-transform:capitalize;font-family:UbuntuCondensed;'>" + localStorage.weather_desc + "</span>");
+    $("#longWeatherDesc").html("<span style='text-transform:capitalize;font-family:UbuntuCondensed;'>" + localStorage.weather_desc + "</span>");
     //Weekly Weather
     for (var i = 0; i < 5; i++) {
         $('#' + i + ' .day').text(localStorage.getItem('forecast' + i + '_day'));
@@ -266,13 +276,12 @@ function setApiSelected() {
 function opacity() {
     $('input[type=range]').val(localStorage.app_opacity);
     document.title = "o" + localStorage.app_opacity;
-    document.title = "enabledrag";
+    document.title = "enable_drag";
 }
 
 function updateTitle(val) {
-	rounded_val = Math.round(val*100)/100;
-	document.title = "o" + rounded_val;
-	localStorage.app_opacity = rounded_val;
+	document.title = "o" + val;
+	localStorage.app_opacity = val;
 }
 
 function showNotFinished() {
@@ -412,6 +421,18 @@ function getTemperatureSymbol(unit) {
     } 
     else {
         return " °F";
+    }
+}
+
+function getSpeedUnitSymbol(unit) { 
+    if (unit == "ms" || unit == "m/s" ) {
+        return " m/s";
+    } 
+    else if (unit == "kph") {
+        return " kph";
+    } 
+    else {
+        return " mph";
     }
 }
 
