@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	background(null);
     var updateInteval = 3600000;
     var updateTimer;
     //Filters Proprietary RSS Tags
