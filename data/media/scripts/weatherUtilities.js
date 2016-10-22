@@ -1,7 +1,10 @@
 //Get language from url
 function getLanguage() {
 	var url = decodeURIComponent(window.location.search.substring(1));
-	return url.split("=")[1];
+	if (url.split("=")[1] == "undefined")
+		return "en";
+	else
+		return url.split("=")[1];
 }
 
 //Calculate temperature based on local selection of measurement and api provided
