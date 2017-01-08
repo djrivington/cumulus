@@ -1,6 +1,6 @@
 # Cumulus
 
-Resurrected!
+If anyone is interested there is a [port to Qt](https://github.com/vadrian89/cumulus-qt) ongoing.
 
 Simple weather application, powered by [Yahoo! Weather](http://weather.yahoo.com) & [Open Weather Map](http://openweathermap.org/)  
 
