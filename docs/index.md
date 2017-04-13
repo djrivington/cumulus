@@ -9,9 +9,7 @@ Cumulus is a simple, stylish, weather application, with a back end powered by [Y
 
 This is a port to Qt/Qml of the [original cumulus](legacy_cumulus.md)
 
-![weather](assets/images/weather.gif)
-
-![location](assets/images/location.png) ![settings](assets/images/settings.png)
+![weather](assets/images/weather.gif) ![location](assets/images/location.png) ![settings](assets/images/settings.png)
 
 ## Features
 - Colors selectors for background and text with alpha channel, knock yourselves up out
